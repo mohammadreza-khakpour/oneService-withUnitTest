@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0720A591
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShop.Services.Tests.Unit", "OnlineShop.Services.Tests.Unit\OnlineShop.Services.Tests.Unit.csproj", "{1295965D-BFA2-4FDD-89DB-410C52CBEBAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShop.Services", "OnlineShop.Services\OnlineShop.Services.csproj", "{EB586D5A-CE8D-4846-B5D3-5C2D7E29A47F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{1295965D-BFA2-4FDD-89DB-410C52CBEBAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1295965D-BFA2-4FDD-89DB-410C52CBEBAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1295965D-BFA2-4FDD-89DB-410C52CBEBAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB586D5A-CE8D-4846-B5D3-5C2D7E29A47F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB586D5A-CE8D-4846-B5D3-5C2D7E29A47F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB586D5A-CE8D-4846-B5D3-5C2D7E29A47F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB586D5A-CE8D-4846-B5D3-5C2D7E29A47F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

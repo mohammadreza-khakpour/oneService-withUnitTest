@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using OnlineShop.Entities;
 using System;
 using System.Reflection;
@@ -7,17 +8,39 @@ namespace OnlineShop.Persistence.EF
 {
     public class EFDataContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public EFDataContext(string connectionString)
+            : this(new DbContextOptionsBuilder<EFDataContext>().UseSqlite(connectionString).Options)
         {
-            optionsBuilder.UseSqlServer("server=.;database=ShopDB;trusted_connection=true");
-            base.OnConfiguring(optionsBuilder);
         }
+        private EFDataContext(DbContextOptions<EFDataContext> options)
+            : this((DbContextOptions)options)
+        {
+        }
+        protected EFDataContext(DbContextOptions options) : base(options)
+        {
+        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("server=.;database=ShopDB;trusted_connection=true");
+        //    base.OnConfiguring(optionsBuilder);
+        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }
-        public DbSet<Good> Products { get; set; }
-        public DbSet<GoodCategory> ProductCategories { get; set; }
+        public override ChangeTracker ChangeTracker
+        {
+            get
+            {
+                var tracker = base.ChangeTracker;
+                tracker.LazyLoadingEnabled = false;
+                tracker.AutoDetectChangesEnabled = true;
+                tracker.QueryTrackingBehavior = QueryTrackingBehavior.TrackAll;
+                return tracker;
+            }
+        }
+        public DbSet<Good> Goods { get; set; }
+        public DbSet<GoodCategory> GoodCategories { get; set; }
     }
 }
