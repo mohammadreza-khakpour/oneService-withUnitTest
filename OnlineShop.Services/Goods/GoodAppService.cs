@@ -20,6 +20,11 @@ namespace OnlineShop.Services.Goods
 
         public async Task<int> Add(AddGoodDto dto)
         {
+            bool invalidCodeLength = _goodRepository.IsCodeLengthInvalid(dto.Code);
+            if (invalidCodeLength == true)
+            {
+                throw new LengthOfGoodCodeIsNotValidException();
+            }
             bool duplicatedTitleCode = _goodRepository.IsDuplicatedCode(dto.Code);
             if (duplicatedTitleCode == true)
             {

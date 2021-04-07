@@ -71,5 +71,10 @@ namespace OnlineShop.Persistence.EF.Goods
                 .Any(good => good.Title == title);
             return result;
         }
+
+        public bool IsCodeLengthInvalid(string code)
+        {
+            return true ? code.Length > 10 : false;
+        }
     }
 }

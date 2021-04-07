@@ -8,6 +8,7 @@ namespace OnlineShop.Services.Goods.Contracts
     public interface GoodRepository
     {
         bool IsDuplicatedCode(string code);
+        bool IsCodeLengthInvalid(string code);
         Good Add(AddGoodDto dto);
         void Delete(int id);
         List<GetGoodDto> GetAll();

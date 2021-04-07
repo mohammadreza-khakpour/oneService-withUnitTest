@@ -83,6 +83,19 @@ namespace OnlineShop.Services.Tests.Unit.Goods
         }
 
         [Fact]
+        public void Add_prevent_add_when_code_length_is_more_than_10()
+        {
+            var goodCategory = GoodFactory.GenerateGoodCategoryWithDummyTitle();
+            context.Manipulate(_ => _.GoodCategories.Add(goodCategory));
+            var dto = GoodFactory.GenerateADDDto();
+            dto.Code = "12345678900";
+
+            Func<Task> expected = () => sut.Add(dto);
+
+            expected.Should().Throw<LengthOfGoodCodeIsNotValidException>();
+        }
+
+        [Fact]
         public async void Update_update_all_fields_of_good_properly()
         {
             var goodCategory = GoodFactory.GenerateGoodCategoryWithDummyTitle();
