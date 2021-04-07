@@ -20,21 +20,21 @@ namespace OnlineShop.Services.Goods
 
         public async Task<int> Add(AddGoodDto dto)
         {
-            bool result = _goodRepository.IsDuplicatedCode(dto.Code);
-            if (result == true)
+            bool duplicatedTitleCode = _goodRepository.IsDuplicatedCode(dto.Code);
+            if (duplicatedTitleCode == true)
             {
                 throw new GoodDuplicatedCodeException();
             }
-            CheckForDuplicatedTitle(dto.Title);
+            bool duplicatedTitleResult = _goodRepository.IsDuplicatedTitle(dto.Title);
+            if (duplicatedTitleResult == true)
+            {
+                throw new GoodDuplicatedTitleException();
+            }
             var record = _goodRepository.Add(dto);
             _unitOfWork.Complete();
             return record.Id;
         }
 
-        private void CheckForDuplicatedTitle(string title)
-        {
-            _goodRepository.CheckForDuplicatedTitle(title);
-        }
 
         public async Task<int> Update(int id, UpdateGoodDto dto)
         {

@@ -15,15 +15,7 @@ namespace OnlineShop.Persistence.EF.Goods
         {
             _dBContext = dBContext;
         }
-        public void CheckForDuplicatedTitle(string title)
-        {
-            bool result = _dBContext.Goods
-                .Any(good => good.Title == title);
-            if (result == true)
-            {
-                throw new GoodDuplicatedTitleException();
-            }
-        }
+        
 
         public bool IsDuplicatedCode(string code)
         {
@@ -33,7 +25,11 @@ namespace OnlineShop.Persistence.EF.Goods
         }
         public Good Add(AddGoodDto dto)
         {
-            CheckForDuplicatedTitle(dto.Title);
+            bool res02 = IsDuplicatedTitle(dto.Title);
+            if (res02 == true)
+            {
+                throw new GoodDuplicatedTitleException();
+            }
             Good good = new Good
             {
                 Code = dto.Code,
@@ -67,6 +63,13 @@ namespace OnlineShop.Persistence.EF.Goods
                 GoodCategoryId = _.GoodCategoryId,
                 IsSufficientInStore = _.IsSufficientInStore
             }).ToList();
+        }
+
+        public bool IsDuplicatedTitle(string title)
+        {
+            bool result = _dBContext.Goods
+                .Any(good => good.Title == title);
+            return result;
         }
     }
 }

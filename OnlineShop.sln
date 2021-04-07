@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShop.Entities", "OnlineShop.Entities\OnlineShop.Entities.csproj", "{598B54B1-94AE-4E45-BDEF-CEBD032799BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShop.Entities", "OnlineShop.Entities\OnlineShop.Entities.csproj", "{598B54B1-94AE-4E45-BDEF-CEBD032799BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShop.Infrastructure", "OnlineShop.Infrastructure\OnlineShop.Infrastructure.csproj", "{81F6E337-F755-4E54-BCEE-E0673A935AC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShop.Infrastructure", "OnlineShop.Infrastructure\OnlineShop.Infrastructure.csproj", "{81F6E337-F755-4E54-BCEE-E0673A935AC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShop.Persistence.EF", "OnlineShop.Persistence.EF\OnlineShop.Persistence.EF.csproj", "{6CB287EE-4FF3-4D8F-9643-723C54CE7388}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShop.Persistence.EF", "OnlineShop.Persistence.EF\OnlineShop.Persistence.EF.csproj", "{6CB287EE-4FF3-4D8F-9643-723C54CE7388}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0720A591-43E2-4757-B05F-E0C7E8BCCAC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShop.Services.Tests.Unit", "OnlineShop.Services.Tests.Unit\OnlineShop.Services.Tests.Unit.csproj", "{1295965D-BFA2-4FDD-89DB-410C52CBEBAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShop.Services.Tests.Unit", "OnlineShop.Services.Tests.Unit\OnlineShop.Services.Tests.Unit.csproj", "{1295965D-BFA2-4FDD-89DB-410C52CBEBAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShop.Services", "OnlineShop.Services\OnlineShop.Services.csproj", "{EB586D5A-CE8D-4846-B5D3-5C2D7E29A47F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShop.Services", "OnlineShop.Services\OnlineShop.Services.csproj", "{EB586D5A-CE8D-4846-B5D3-5C2D7E29A47F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShop.Services.Tests.Specs", "OnlineShop.Services.Tests.Specs\OnlineShop.Services.Tests.Specs.csproj", "{9619DC8E-6006-4691-96AF-0BD8387F2982}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,12 +43,17 @@ Global
 		{EB586D5A-CE8D-4846-B5D3-5C2D7E29A47F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB586D5A-CE8D-4846-B5D3-5C2D7E29A47F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB586D5A-CE8D-4846-B5D3-5C2D7E29A47F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9619DC8E-6006-4691-96AF-0BD8387F2982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9619DC8E-6006-4691-96AF-0BD8387F2982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9619DC8E-6006-4691-96AF-0BD8387F2982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9619DC8E-6006-4691-96AF-0BD8387F2982}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1295965D-BFA2-4FDD-89DB-410C52CBEBAF} = {0720A591-43E2-4757-B05F-E0C7E8BCCAC5}
+		{9619DC8E-6006-4691-96AF-0BD8387F2982} = {0720A591-43E2-4757-B05F-E0C7E8BCCAC5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3F1F39B1-4874-4711-9B92-E2E4313E8A16}
