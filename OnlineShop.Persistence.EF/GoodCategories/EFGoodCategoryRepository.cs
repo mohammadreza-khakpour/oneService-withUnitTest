@@ -32,19 +32,5 @@ namespace OnlineShop.Persistence.EF.GoodCategories
             });
             return res.Entity;
         }
-        public List<GetGoodCategoryDto> GetAll()
-        {
-            return _dBContext.GoodCategories.Select(_ => new GetGoodCategoryDto
-            {
-                Id = _.Id,
-                Title = _.Title
-            }).ToList();
-        }
-
-        public GetGoodCategoryDto FindOneById(int id)
-        {
-            var theGoodCategory = _dBContext.GoodCategories.Find(id);
-            return new GetGoodCategoryDto() { Id = theGoodCategory.Id, Title = theGoodCategory.Title };
-        }
     }
 }

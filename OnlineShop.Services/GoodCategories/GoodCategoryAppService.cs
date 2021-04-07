@@ -29,13 +29,5 @@ namespace OnlineShop.Services.GoodCategories
             _unitOfWork.Complete();
             return record.Id;
         }
-        public List<GetGoodCategoryDto> GetAll()
-        {
-            return _goodCategoryRepository.GetAll();
-        }
-        public GetGoodCategoryDto FindOneById(int id)
-        {
-            return _goodCategoryRepository.FindOneById(id);
-        }
     }
 }

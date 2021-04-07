@@ -8,7 +8,5 @@ namespace OnlineShop.Services.GoodCategories.Contracts
     public interface GoodCategoryService
     {
         Task<int> Add(AddGoodCategoryDto dto);
-        GetGoodCategoryDto FindOneById(int id);
-        List<GetGoodCategoryDto> GetAll();
     }
 }

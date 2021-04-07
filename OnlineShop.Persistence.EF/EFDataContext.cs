@@ -19,11 +19,6 @@ namespace OnlineShop.Persistence.EF
         protected EFDataContext(DbContextOptions options) : base(options)
         {
         }
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("server=.;database=ShopDB;trusted_connection=true");
-        //    base.OnConfiguring(optionsBuilder);
-        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
@@ -40,6 +35,7 @@ namespace OnlineShop.Persistence.EF
                 return tracker;
             }
         }
+        public DbSet<Warehouse> Warehouses { get; set; }
         public DbSet<Good> Goods { get; set; }
         public DbSet<GoodCategory> GoodCategories { get; set; }
     }

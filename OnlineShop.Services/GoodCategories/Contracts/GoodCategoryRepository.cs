@@ -9,7 +9,5 @@ namespace OnlineShop.Services.GoodCategories.Contracts
     {
         void CheckForDuplicatedTitle(string title);
         GoodCategory Add(AddGoodCategoryDto dto);
-        GetGoodCategoryDto FindOneById(int id);
-        List<GetGoodCategoryDto> GetAll();
     }
 }
