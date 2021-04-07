@@ -24,15 +24,6 @@ namespace OnlineShop.Persistence.EF.Goods
                 throw new GoodDuplicatedTitleException();
             }
         }
-        public void CheckForDuplicatedCode(string code)
-        {
-            bool result = _dBContext.Goods
-                .Any(good => good.Code == code);
-            if (result == true)
-            {
-                throw new GoodDuplicatedCodeException();
-            }
-        }
 
         public bool IsDuplicatedCode(string code)
         {
@@ -58,27 +49,6 @@ namespace OnlineShop.Persistence.EF.Goods
         {
             return _dBContext.Goods.Find(id);
         }
-        
-
-        public void UpdateSufficiencyStatus(int goodId)
-        {
-            List<Warehouse> goodWarehouses =
-                _dBContext.Warehouses.Where(x => x.GoodId == goodId).ToList();
-            int goodOverallCount = 0;
-            goodWarehouses.ForEach(x =>
-            {
-                goodOverallCount += x.GoodCount;
-            });
-            Good theGood = _dBContext.Goods.Find(goodId);
-            if (theGood.MinimumAmount <= goodOverallCount)
-            {
-                theGood.IsSufficientInStore = false;
-            }
-            else
-            {
-                theGood.IsSufficientInStore = true;
-            }
-        }
 
         public void Delete(int id)
         {
@@ -86,5 +56,17 @@ namespace OnlineShop.Persistence.EF.Goods
             _dBContext.Goods.Remove(res);
         }
 
+        public List<GetGoodDto> GetAll()
+        {
+            return _dBContext.Goods.Select(_ => new GetGoodDto
+            {
+                Id = _.Id,
+                Title = _.Title,
+                Code = _.Code,
+                MinimumAmount = _.MinimumAmount,
+                GoodCategoryId = _.GoodCategoryId,
+                IsSufficientInStore = _.IsSufficientInStore
+            }).ToList();
+        }
     }
 }

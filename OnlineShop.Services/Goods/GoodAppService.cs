@@ -36,13 +36,6 @@ namespace OnlineShop.Services.Goods
             _goodRepository.CheckForDuplicatedTitle(title);
         }
 
-        public void UpdateSufficiencyStatus(int goodId)
-        {
-            _goodRepository.UpdateSufficiencyStatus(goodId);
-            _unitOfWork.Complete();
-        }
-
-
         public async Task<int> Update(int id, UpdateGoodDto dto)
         {
             var res = _goodRepository.Find(id);
@@ -59,6 +52,11 @@ namespace OnlineShop.Services.Goods
         {
             _goodRepository.Delete(id);
             _unitOfWork.Complete();
+        }
+
+        public List<GetGoodDto> GetAll()
+        {
+            return _goodRepository.GetAll();
         }
 
     }

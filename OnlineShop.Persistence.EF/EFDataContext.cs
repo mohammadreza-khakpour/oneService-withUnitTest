@@ -35,7 +35,6 @@ namespace OnlineShop.Persistence.EF
                 return tracker;
             }
         }
-        public DbSet<Warehouse> Warehouses { get; set; }
         public DbSet<Good> Goods { get; set; }
         public DbSet<GoodCategory> GoodCategories { get; set; }
     }

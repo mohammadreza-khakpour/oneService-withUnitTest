@@ -10,6 +10,6 @@ namespace OnlineShop.Services.Goods.Contracts
         Task<int> Add(AddGoodDto dto);
         Task<int> Update(int id, UpdateGoodDto dto);
         void Delete(int id);
-        void UpdateSufficiencyStatus(int goodId);
+        List<GetGoodDto> GetAll();
     }
 }

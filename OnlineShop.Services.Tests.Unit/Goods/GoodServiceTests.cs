@@ -37,10 +37,7 @@ namespace OnlineShop.Services.Tests.Unit.Goods
         [Fact]
         public async void Add_add_Good_properly()
         {
-            var goodCategory = new GoodCategory()
-            {
-                Title = "dummy-title"
-            };
+            var goodCategory = GoodFactory.GenerateGoodCategoryWithDummyTitle();
             context.Manipulate(_ => _.GoodCategories.Add(goodCategory));
             var dto = GoodFactory.GenerateADDDto();
             dto.GoodCategoryId = goodCategory.Id;
@@ -54,18 +51,10 @@ namespace OnlineShop.Services.Tests.Unit.Goods
         [Fact]
         public void Add_prevent_add_when_code_exists()
         {
-            var goodCategory = new GoodCategory()
-            {
-                Title = "dummy-title"
-                
-            };
+            var goodCategory = GoodFactory.GenerateGoodCategoryWithDummyTitle();
             context.Manipulate(_ => _.GoodCategories.Add(goodCategory));
-            var good = new Good()
-            {
-                Code = "11123",
-                Title = "dummy-product-title",
-                GoodCategoryId=goodCategory.Id
-            };
+            var good = GoodFactory.GenerateGoodWithDummyTitleDummyCode();
+            good.GoodCategoryId = goodCategory.Id;
             context.Manipulate(_ => _.Goods.Add(good));
             var dto = GoodFactory.GenerateADDDto();
             dto.Code = good.Code;
@@ -79,18 +68,10 @@ namespace OnlineShop.Services.Tests.Unit.Goods
         [Fact]
         public void Add_prevent_add_when_title_exists()
         {
-            var goodCategory = new GoodCategory()
-            {
-                Title = "dummy-title"
-
-            };
+            var goodCategory = GoodFactory.GenerateGoodCategoryWithDummyTitle();
             context.Manipulate(_ => _.GoodCategories.Add(goodCategory));
-            var good = new Good()
-            {
-                Code = "111",
-                Title = "dummy-product-title",
-                GoodCategoryId = goodCategory.Id
-            };
+            var good = GoodFactory.GenerateGoodWithDummyTitleDummyCode();
+            good.GoodCategoryId = goodCategory.Id;
             context.Manipulate(_ => _.Goods.Add(good));
             var dto = GoodFactory.GenerateADDDto();
             dto.Title = good.Title;
@@ -102,12 +83,9 @@ namespace OnlineShop.Services.Tests.Unit.Goods
         }
 
         [Fact]
-        public async void Update_update_good_properly()
+        public async void Update_update_all_fields_of_good_properly()
         {
-            var goodCategory = new GoodCategory()
-            {
-                Title = "dummy-title"
-            };
+            var goodCategory = GoodFactory.GenerateGoodCategoryWithDummyTitle();
             context.Manipulate(_ => _.GoodCategories.Add(goodCategory));
             var dto = GoodFactory.GenerateADDDto();
             dto.GoodCategoryId = goodCategory.Id;
@@ -121,18 +99,11 @@ namespace OnlineShop.Services.Tests.Unit.Goods
         }
 
         [Fact]
-        public async void Delete_delete_good_properly()
+        public void Delete_delete_good_properly()
         {
-            var goodCategory = new GoodCategory()
-            {
-                Title = "dummy-title"
-            };
+            var goodCategory = GoodFactory.GenerateGoodCategoryWithDummyTitle();
             context.Manipulate(_ => _.GoodCategories.Add(goodCategory));
-            var good = new Good()
-            {
-                Title = "dummy-good-title",
-                Code = "dummy-good-code",
-            };
+            var good = GoodFactory.GenerateGoodWithDummyTitleDummyCode();
             good.GoodCategoryId = goodCategory.Id;
             context.Manipulate(_ => _.Goods.Add(good));
             Good theGood = context.Goods.Single(_ => _.Title==good.Title);
@@ -141,6 +112,28 @@ namespace OnlineShop.Services.Tests.Unit.Goods
 
             bool expected = context.Goods.Any(_ => _.Title == good.Title);
             expected.Should().BeFalse();
+        }
+
+        [Fact]
+        public void GetAll_get_all_added_goods_properly()
+        {
+            var goodCategory = GoodFactory.GenerateGoodCategoryWithDummyTitle();
+            context.Manipulate(_ => _.GoodCategories.Add(goodCategory));
+            var good = GoodFactory.GenerateGoodWithDummyTitleDummyCode();
+            good.GoodCategoryId = goodCategory.Id;
+            var good02 = new Good()
+            {
+                Title = "dummy-good-title-02",
+                Code = "dummy-good-code-02",
+            };
+            good02.GoodCategoryId = goodCategory.Id;
+            context.Manipulate(_ => _.Goods.Add(good));
+            context.Manipulate(_ => _.Goods.Add(good02));
+
+            var actual = sut.GetAll();
+
+            List<Good> goodsList = new List<Good>() {good,good02 };
+            goodsList.Should().BeEquivalentTo(actual);
         }
     }
 }

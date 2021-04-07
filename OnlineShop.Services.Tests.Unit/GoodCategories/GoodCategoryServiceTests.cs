@@ -55,9 +55,7 @@ namespace OnlineShop.Services.Tests.Unit.GoodCategories
             context.Manipulate(_ => _.GoodCategories.Add(goodCategory));
             var dto = GoodCategoryFactory.GenerateADDDto(goodCategory.Title);
 
-
             Func<Task> expected = () => sut.Add(dto);
-
             
             expected.Should().Throw<GoodCategoryDuplicatedTitleException>();
         }
