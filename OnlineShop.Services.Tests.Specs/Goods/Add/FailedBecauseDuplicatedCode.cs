@@ -59,6 +59,7 @@ namespace OnlineShop.Services.Tests.Specs.Goods.Add
             {
                 Title = "پپسی قوطی",
                 Code = "2",
+                MinimumAmount = 1,
                 GoodCategoryId = categoryId
             };
 
@@ -68,7 +69,7 @@ namespace OnlineShop.Services.Tests.Specs.Goods.Add
         // و فقط یک کالا با نام شانی و کد 2  در فهرست کالاها وجود داشته باشد.
         private void then()
         {
-            actualSutResult.Should().ThrowExactly<GoodDuplicatedCodeException>();
+            actualSutResult.Should().Throw<GoodDuplicatedCodeException>();
         }
 
         [Fact]

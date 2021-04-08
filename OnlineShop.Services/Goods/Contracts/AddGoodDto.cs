@@ -16,10 +16,11 @@ namespace OnlineShop.Services.Goods.Contracts
         {
 
         }
-        public AddGoodDto(string title, string code)
+        public AddGoodDto(string title, string code, int minimumAmount)
         {
             Title = title;
             Code = code;
+            MinimumAmount = minimumAmount;
         }
     }
 }

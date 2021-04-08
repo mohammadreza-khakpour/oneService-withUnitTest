@@ -8,9 +8,9 @@ namespace OnlineShop.Services.Tests.Unit.Goods
 {
     public static class GoodFactory
     {
-        public static AddGoodDto GenerateADDDto(string title = "dummy-title", string code = "111")
+        public static AddGoodDto GenerateADDDto(string title = "dummy-title", string code = "111",int minimumAmount=1)
         {
-            return new AddGoodDto(title,code);
+            return new AddGoodDto(title,code,minimumAmount);
         }
 
         public static UpdateGoodDto GenerateUpdateDto(string title="dummy-title-02", string code="222", 

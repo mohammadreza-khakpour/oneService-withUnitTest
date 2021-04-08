@@ -76,5 +76,14 @@ namespace OnlineShop.Persistence.EF.Goods
         {
             return true ? code.Length > 10 : false;
         }
+
+        public bool IsSufficiencyStatusInvalid(int minimumAmount)
+        {
+            if (minimumAmount==null || minimumAmount==0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

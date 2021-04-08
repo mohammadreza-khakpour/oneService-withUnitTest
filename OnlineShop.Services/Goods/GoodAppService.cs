@@ -17,9 +17,13 @@ namespace OnlineShop.Services.Goods
             _goodRepository = goodRepository;
             _unitOfWork = unitOfWork;
         }
-
-        public async Task<int> Add(AddGoodDto dto)
+        private void CheckForPossibleExceptions(AddGoodDto dto)
         {
+            bool invalidSufficiencyStatus = _goodRepository.IsSufficiencyStatusInvalid(dto.MinimumAmount);
+            if (invalidSufficiencyStatus == true)
+            {
+                throw new InvalidSufficiencyStatusException();
+            }
             bool invalidCodeLength = _goodRepository.IsCodeLengthInvalid(dto.Code);
             if (invalidCodeLength == true)
             {
@@ -35,6 +39,10 @@ namespace OnlineShop.Services.Goods
             {
                 throw new GoodDuplicatedTitleException();
             }
+        }
+        public async Task<int> Add(AddGoodDto dto)
+        {
+            CheckForPossibleExceptions(dto);
             var record = _goodRepository.Add(dto);
             _unitOfWork.Complete();
             return record.Id;
